@@ -75,6 +75,12 @@
                                   <input id="mobile" name="mobile" placeholder="mobile" class="form-control here" type="number" value="<?php echo $user->mobile; ?>">
                                 </div>
                               </div>
+                              <div class="form-group row">
+                                <label for="website" class="col-4 col-form-label">Wallet</label> 
+                                <div class="col-8">
+                                  <input id="mobile" name="mobile" placeholder="mobile" class="form-control here" type="number" value="<?php echo $user->wallet; ?>" readonly>
+                                </div>
+                              </div>
                                <div class="form-group row">
                                 <label for="website" class="col-4 col-form-label"></label> 
                                 <div class="col-8">

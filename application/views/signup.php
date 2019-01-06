@@ -150,11 +150,17 @@ if($this->session->flashdata('message')){ ?>
    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" autocomplete="off">
   </div>
                       
-                          <div class=" field-parentNew">
-                           <i class="fa fa-phone loginIcon" aria-hidden="true"></i>
-                           <span class="text text-danger"><?php echo form_error('mobile', '<span class="error">', '</span>'); ?></span>
-                           <input class="form-control" id="mobile" name="mobile" placeholder="Phone Number"  value="<?php echo set_value('mobile'); ?>">
-                          </div>
+<div class=" field-parentNew">
+ <i class="fa fa-phone loginIcon" aria-hidden="true"></i>
+ <span class="text text-danger"><?php echo form_error('mobile', '<span class="error">', '</span>'); ?></span>
+ <input class="form-control" id="mobile" name="mobile" placeholder="Phone Number"  value="<?php echo set_value('mobile'); ?>">
+</div>
+
+<div class=" field-parentNew">
+ <i class="fa fa-phone loginIcon" aria-hidden="true"></i>
+ <span class="text text-danger"><?php echo form_error('mobile', '<span class="error">', '</span>'); ?></span>
+ <input class="form-control" id="promoCode" name="promoCode" placeholder="Promo Code"  value="<?php echo set_value('promoCode'); ?>">
+</div>
                           
                                                   
                           

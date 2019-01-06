@@ -56,12 +56,22 @@ class Welcome extends CI_Controller {
                 {
                         $this->load->view('signup');
                 }else{
+                	$reffer_id = null;
+                	$wallet = 0;
+					if($_POST['promoCode'] !=''){
+						$client= $this->db->where('coupan_code',$_POST['promoCode'])->get('client')->row();
+						$reffer_id =$client->id;
+						$wallet =($client->wallet+1);
+						$this->db->where('id',$reffer_id)->update('client',array('wallet'=>$wallet));
+					}
                 	$user=array(
         				'fname'=>$_POST['fname'],
         				'lname'=>$_POST['lname'],
         				'email'=>$_POST['email'],
         				'password'=>$_POST['password'],
         				'mobile'=>$_POST['mobile'],
+        				'coupan_code'=>time(),
+        				'reffer_id'=>$reffer_id,
                 	);
                 	if($this->db->insert('client',$user)){
                 		$last_id = $this->db->insert_id();
@@ -89,6 +99,11 @@ class Welcome extends CI_Controller {
 
 	public function plan()
 	{
+		$session = $this->session->userdata('front_login');
+		if(empty($session)){
+			redirect(base_url());
+		}
+		$data['user']=$this->db->where('id',$session['id'])->get('client')->row();
 		$this->load->view('plan');
 		//redirect('/welcome/dashboard');
 	}
@@ -116,9 +131,14 @@ class Welcome extends CI_Controller {
 		//redirect('/welcome/dashboard');
 	}
 
-public function reffer()
+	public function reffer()
 	{
-		$this->load->view('reffer');
+		$session = $this->session->userdata('front_login');
+		if(empty($session)){
+			redirect(base_url());
+		}
+		$data['user']=$this->db->where('id',$session['id'])->get('client')->row();
+		$this->load->view('reffer',$data);
 		//redirect('/welcome/dashboard');
 	}
 
